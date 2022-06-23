@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>TeeRex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}?{% now "u" %}">
+</head>
+
+<body>
+
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="drop_btn">TeeRex Store</button>
+    </div>
+     <div class="dropdown1">
+        <button class="drop_btn"><a href="{% url 'shoppingcart' %}"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:20px;"></i></a></button>
+    </div>
+     <div class="dropdown1">
+         <button class="drop_btn">Products</button>
+     </div>
+
+</div>
+
+<div class="align">
+<form class="search" action="{% url 'search' %}" method="GET" value="{{request.GET.item}}">
+<input type="text" name="item" value="{{request.GET.item}}" placeholder="Search for products..."/>
+<button type="submit" name="submit" value="Search"><i class="fa fa-search"></i></button>
+</form>
+</div>
+{% if submitbutton == 'Search' and request.GET.item != '' %}
+{% if results %}
+<h1>Results for <b>{{ request.GET.value }}</b></h1>
+
+<br/><br/>
+{% for result in results %}
+{{result.title}}
+<br/>
+
+{% endfor %}
+{% else %}
+No search results for this item
+{% endif %}
+{% endif %}
+
+</body>
+</html>

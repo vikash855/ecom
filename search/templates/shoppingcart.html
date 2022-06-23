@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>TeeRex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}?{% now "u" %}">
+</head>
+
+<body>
+
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="drop_btn">TeeRex Store</button>
+    </div>
+     <div class="dropdown1">
+        <button class="drop_btn"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:20px;"></i></button>
+    </div>
+     <div class="dropdown1">
+         <button class="drop_btn"><a href="{% url 'search' %}">Products</a></button>
+     </div>
+</div>
+
+<br>
+<h1>Shopping Cart</h1>
+
+</body>
+</html>
