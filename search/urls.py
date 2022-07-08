@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.search, name='search'),
     path('shoppingcart', views.shoppingcart, name='shoppingcart'),
+    path('searchresult', views.searchresult, name='search-result'),
 ]

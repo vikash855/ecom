@@ -1,9 +1,10 @@
 body {
   background-color: white;
 }
+
 /* Navbar container */
 .navbar {
-  overflow: auto;
+  overflow: hidden;
   background-color: lightGrey;
   font-family: Arial;
 }
@@ -18,7 +19,12 @@ overflow: hidden;
 float: right;
 overflow: hidden;
 }
-/* Dropdown button */
+
+.dropdown1 a {
+  padding: 0px 40px;
+  text-decoration: none;
+}
+
 .dropdown .drop_btn {
   font-size: 20px;
   border: none;
@@ -26,8 +32,7 @@ overflow: hidden;
   color: Black;
   padding: 10px 35px;
   background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+  margin: 0;
 }
 
 .dropdown1 .drop_btn {
@@ -35,19 +40,20 @@ overflow: hidden;
   border: none;
   outline: none;
   color: Black;
-  padding: 10px 40px;
+  padding: 10px 0px;
   background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+  font-family: inherit;
+  margin: 0;
 
 }
 
 /* Add a red background color to navbar links on hover */
-.dropdown:hover  {
-  background-color: red;
-}
 .dropdown1:hover  {
   background-color: red;
+}
+
+.form {
+padding-left: 650px;
 }
 
 /* Style the search field */
@@ -61,23 +67,76 @@ form.search input{
 
 /* Style the submit button */
 form.search button {
-  width: 5%;
-  padding: 10px;
   background: grey;
-  font-size: 15px;
   border: none;
   cursor: pointer;
+  border-radius: 15px;
 }
 
-div.align {
-padding-left:700px;padding-right:0px;
-padding-top:75px;padding-bottom:0px;
-margin:auto;
+#align {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 300px auto;
+  gap: 10px;
+  background-color: white;
+  padding: 10px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-row-gap: 10px;
+  background-color: white;
+  padding: 20px 50px;
+  grid-column-gap: 160px;
 }
 
 h1{
-font-size: 20px;
-font-family: Arial;
-padding-left:50px
+font-size: 16px;
 }
 
+h2{
+font-size: 20px;
+padding-left:70px;
+}
+
+.grid-image-price-button {
+  display: grid;
+  grid-template-row: auto auto auto;
+  gap: 0px;
+  background-color: white;
+  padding: 0px;
+}
+
+.flex-p{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 10px;
+  background-color: white;
+  padding: 0px;
+}
+
+.flex-p .Sub-button {
+  align-self: center;
+}
+
+.Sub-button .button-cart {
+  cursor: pointer;
+  margin-top: 0px;
+  float: right;
+  text-align: center;
+}
+
+h3{
+font-size: 12px;
+padding-left:20px;
+}
+
+.filter{
+font-weight:bold;
+}

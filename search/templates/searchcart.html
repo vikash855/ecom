@@ -1,8 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-
+<html>
 <head>
     <title>TeeRex</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,41 +9,84 @@
 </head>
 
 <body>
-
-
-<div class="navbar">
-    <div class="dropdown">
-        <button class="drop_btn">TeeRex Store</button>
+<div class="container">
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="drop_btn">TeeRex Store</button>
+        </div>
+        <div class="dropdown1">
+            <button class="drop_btn"><a href="{% url 'shoppingcart' %}"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:20px;"></i></a></button>
+        </div>
+        <div class="dropdown1">
+            <button class="drop_btn"><a href="{% url 'search' %}">Products</a></button>
+        </div>
     </div>
-     <div class="dropdown1">
-        <button class="drop_btn"><a href="{% url 'shoppingcart' %}"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size:20px;"></i></a></button>
+
+{% block content %}
+
+    <div id="align">
+        <div class="form">
+            <form class="search" method="POST" action="{% url 'search-result' %}">
+                {% csrf_token %}
+                <input type="text" name="item"  placeholder="Search for products..."/>
+                <button type="submit" style="width:60px;height:40px;"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
     </div>
-     <div class="dropdown1">
-         <button class="drop_btn">Products</button>
-     </div>
 
+    <div class="grid">
+        <div class="filter">
+            <div class="filter-grid">
+            <form>
+                <br>
+                <h1>Colour</h1>
+                        <input type="checkbox" name="Red" id="red">
+                        <label for="red">Red</label><br>
+                        <input type="checkbox" name="Blue" id="Blue">
+                        <label for="Blue">Blue</label><br>
+                        <input type="checkbox" name="Green" id="Green">
+                        <label for="Green">Green</label><br>
+                <h1>Gender</h1>
+                        <input type="checkbox" name="Men" id="Men">
+                        <label for="Men">Men</label><br>
+                        <input type="checkbox" name="Women" id="Women">
+                        <label for="Women">Women</label><br>
+                <h1>Price</h1>
+                        <input type="checkbox" name="Rs0-Rs250" id="Rs0-Rs250">
+                        <label for="Rs0-Rs250">Rs0-Rs250</label><br>
+                        <input type="checkbox" name="Rs251-Rs450" id="Rs251-Rs450">
+                        <label for="Rs251-Rs450">Rs251-Rs450</label><br>
+                        <input type="checkbox" name="Rs450" id="Rs450">
+                        <label for="Rs450">Rs450</label><br>
+                <h1>Type</h1>
+                        <input type="checkbox" name="Polo" id="Polo">
+                        <label for="Polo">Polo</label><br>
+                        <input type="checkbox" name="Hoodie" id="Hoodie">
+                        <label for="Hoodie">Hoodie</label><br>
+                        <input type="checkbox" name="Basic" id="Basic">
+                        <label for="Basic">Basic</label><br>
+            </form>
+            </div>
+        </div>
+
+            {% block list %}
+            <div class="list">
+                {% for i in data %}
+                <div class="grid-image-price-button">
+                        <div><p><strong>{{ i.name }}</strong></p></div>
+                        <div><img src="{{ i.imageURL }}" width="250" height="150"></div>
+                    <div class="flex-p">
+                         <div class="price"><p><strong>Rs {{ i.price }}</strong></p></div>
+                         <div class="Sub-button"><button class="button-cart" type="submit" style="width:100px;height:30px;background-color:black;color:white;">Add to Cart</button></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endblock list %}
+    </div>
+
+{% endblock content %}
 </div>
-
-<div class="align">
-<form class="search" action="{% url 'search' %}" method="GET" value="{{request.GET.item}}">
-<input type="text" name="item" value="{{request.GET.item}}" placeholder="Search for products..."/>
-<button type="submit" name="submit" value="Search"><i class="fa fa-search"></i></button>
-</form>
-</div>
-{% if submitbutton == 'Search' and request.GET.item != '' %}
-{% if results %}
-<h1>Results for <b>{{ request.GET.value }}</b></h1>
-
-<br/><br/>
-{% for result in results %}
-{{result.title}}
-<br/>
-
-{% endfor %}
-{% else %}
-No search results for this item
-{% endif %}
-{% endif %}
 
 </body>
 </html>

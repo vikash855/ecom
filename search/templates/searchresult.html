@@ -1,0 +1,24 @@
+{% extends 'searchcart.html' %}
+{% load static %}
+
+{% block list %}
+    {% if item %}
+            <div class="list">
+                {% for i in search_item %}
+                {% if i.name == item or i.color == item or i.type == item %}
+                <div class="grid-image-price-button">
+                        <div><p><strong>{{ i.name }}</strong></p></div>
+                        <div><img src="{{ i.imageURL }}" width="250" height="150"></div>
+                    <div class="flex-p">
+                         <div class="price"><p><strong>Rs {{ i.price }}</strong></p></div>
+                         <div class="Sub-button"><button class="button-cart" type="submit" style="width:100px;height:30px;background-color:black;color:white;">Add to Cart</button></div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+    {% else %}
+        <h2>You forgot to search!!!</h2>
+    {% endif %}
+
+{% endblock list %}
